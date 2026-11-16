@@ -29,12 +29,16 @@ def git_sync():
     print(f"Target repository configured: {repo_url}")
     
     os.chdir(parent_dir)
-    # Reset local commits to remove the secret from commit history
-    run_command(["git", "reset", "--soft", "HEAD~1"])
+    
+    print("Repairing potential git repository corruption...")
+    run_command(["git", "fsck", "--full"])
+    run_command(["git", "prune"])
+    run_command(["git", "gc", "--prune=now"])
+    
     run_command(["git", "rm", "--cached", "config/git_credentials.json"])
     run_command(["git", "remote", "set-url", "origin", repo_url])
     run_command(["git", "add", "."])
-    run_command(["git", "commit", "-m", "chore: secure autonomous multi-agent sync without secrets"])
+    run_command(["git", "commit", "-m", "chore: secure autonomous multi-agent sync and repo repair"])
     success = run_command(["git", "push", "origin", "main", "--force"])
     
     if success:
