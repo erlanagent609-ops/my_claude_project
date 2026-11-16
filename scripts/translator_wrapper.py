@@ -1,5 +1,6 @@
 import sys
 import os
+from datetime import datetime, timezone, timedelta
 from weather_fetcher import fetch_weather
 
 def load_skill_rules():
@@ -59,6 +60,11 @@ def translate_text(text):
     if "cuaca" in clean_text and "kalasey dua" in clean_text:
         weather = fetch_weather("Kalasey Dua")
         return f"baik, mari kita periksa kondisi cuaca di Kalasey Dua:\n{weather}"
+
+    if "jam berapa" in clean_text or "waktu" in clean_text:
+        wib = datetime.now(timezone(timedelta(hours=7))).strftime("%H:%M:%S WIB")
+        wita = datetime.now(timezone(timedelta(hours=8))).strftime("%H:%M:%S WITA")
+        return f"Saat ini pukul {wib} / {wita}."
     
     return f"[Translator Agent Active - Rules Applied]: {text}"
 
