@@ -23,14 +23,7 @@ def git_pusher_agent():
     
     log_activity("Git Pusher Agent initiated.")
     
-    # 1. Check git status
-    success, stdout = run_command(["git", "status"])
-    if not success:
-        log_activity(f"Failed to check git status: {stdout}")
-        return
-    log_activity(f"Git Status:\n{stdout}")
-    
-    # 2. Ensure sensitive files are ignored
+    # 1. Ensure sensitive files are ignored and untracked
     gitignore_path = os.path.join(root_dir, '.gitignore')
     ignore_entry = "config/git_credentials.json"
     if os.path.exists(gitignore_path):
@@ -41,22 +34,33 @@ def git_pusher_agent():
                 f.write(f"\n{ignore_entry}\n")
             log_activity("Added config/git_credentials.json to .gitignore.")
             
-    # Remove from git cache if tracked
+    # Safely untrack sensitive file if it was previously tracked
     run_command(["git", "rm", "--cached", "config/git_credentials.json"])
     
-    # 3. Git add, commit with dynamic timestamp, and push
+    # 2. Check git status
+    success, stdout = run_command(["git", "status"])
+    if not success:
+        log_activity(f"Failed to check git status: {stdout}")
+        return
+    log_activity(f"Git Status checked successfully.")
+    
+    # 3. Git add all changes (excluding ignored files)
     success, stdout = run_command(["git", "add", "."])
     if not success:
         log_activity(f"Git add failed: {stdout}")
         return
         
+    # 4. Commit with dynamic timestamp
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     commit_msg = f"Auto-push update oleh agen pada {current_time}"
     
     success, stdout = run_command(["git", "commit", "-m", commit_msg])
     if not success and "nothing to commit" not in stdout:
-        log_activity(f"Git commit failed: {stdout}")
+        log_activity(f"Git commit failed or nothing to commit: {stdout}")
+    else:
+        log_activity("Git commit created successfully.")
         
+    # 5. Git push origin main
     success, stdout = run_command(["git", "push", "origin", "main"])
     if success:
         log_activity("Git push successful!")
