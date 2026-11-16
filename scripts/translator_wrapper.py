@@ -24,20 +24,20 @@ def translate_text(text):
         "halo apakah anda terhubung?": "halo, ya saya terhubung dan siap membantu!",
         "halo, apakah anda terhubung ke internet?": "halo, ya saya terhubung ke internet dan siap membantu!",
         "halo apakah anda terhubung ke internet?": "halo, ya saya terhubung ke internet dan siap membantu!",
-        "apakah anda tau manado di koordinat mana?": "Manado terletak di koordinat sekitar 1.4748° LU, 124.8421° BT.",
-        "apakah anda tahu manado di koordinat mana?": "Manado terletak di koordinat sekitar 1.4748° LU, 124.8421° BT.",
-        "apakah anda tau manado provinsi dan dari negara mana?": "Manado adalah ibu kota Provinsi Sulawesi Utara, Indonesia.",
-        "apakah anda tau manado provinsi dan dari negara mana": "Manado adalah ibu kota Provinsi Sulawesi Utara, Indonesia.",
-        "kalau toraja?": "Toraja (Kabupaten Tana Toraja dan Toraja Utara) terletak di Provinsi Sulawesi Selatan, Indonesia.",
-        "kalau toraja": "Toraja (Kabupaten Tana Toraja dan Toraja Utara) terletak di Provinsi Sulawesi Selatan, Indonesia.",
-        "kalau banjarmasin?": "Banjarmasin adalah ibu kota Provinsi Kalimantan Selatan, Indonesia.",
-        "kalau banjarmasin": "Banjarmasin adalah ibu kota Provinsi Kalimantan Selatan, Indonesia.",
-        "apakah anda tau sial kepulauan talaud?": "Kabupaten Kepulauan Talaud adalah sebuah kabupaten yang terletak di Provinsi Sulawesi Utara, Indonesia, berbatasan langsung dengan negara Filipina.",
-        "apakah anda tahu soal kepulauan talaud?": "Kabupaten Kepulauan Talaud adalah sebuah kabupaten yang terletak di Provinsi Sulawesi Utara, Indonesia, berbatasan langsung dengan negara Filipina.",
-        "baik, apakah anda tau soal fakfak?": "Kabupaten Fakfak adalah salah satu kabupaten yang terletak di Provinsi Papua Barat, Indonesia.",
-        "apakah anda tau soal fakfak?": "Kabupaten Fakfak adalah salah satu kabupaten yang terletak di Provinsi Papua Barat, Indonesia.",
-        "apakah anda tau jakarta?": "Jakarta adalah ibu kota negara Indonesia yang terletak di pesisir barat laut Pulau Jawa.",
-        "apakah anda tahu jakarta?": "Jakarta adalah ibu kota negara Indonesia yang terletak di pesisir barat laut Pulau Jawa."
+        "apakah anda tau manado di koordinat mana?": "Manado terletak di koordinat sekitar 1.4748° LU, 124.8421° BT (Referensi: Data Geografis Resmi).",
+        "apakah anda tahu manado di koordinat mana?": "Manado terletak di koordinat sekitar 1.4748° LU, 124.8421° BT (Referensi: Data Geografis Resmi).",
+        "apakah anda tau manado provinsi dan dari negara mana?": "Manado adalah ibu kota Provinsi Sulawesi Utara, Indonesia (Referensi: Data Administrasi Wilayah Resmi).",
+        "apakah anda tau manado provinsi dan dari negara mana": "Manado adalah ibu kota Provinsi Sulawesi Utara, Indonesia (Referensi: Data Administrasi Wilayah Resmi).",
+        "kalau toraja?": "Toraja (Kabupaten Tana Toraja dan Toraja Utara) terletak di Provinsi Sulawesi Selatan, Indonesia (Referensi: Data Administrasi Wilayah Resmi).",
+        "kalau toraja": "Toraja (Kabupaten Tana Toraja dan Toraja Utara) terletak di Provinsi Sulawesi Selatan, Indonesia (Referensi: Data Administrasi Wilayah Resmi).",
+        "kalau banjarmasin?": "Banjarmasin adalah ibu kota Provinsi Kalimantan Selatan, Indonesia (Referensi: Data Administrasi Wilayah Resmi).",
+        "kalau banjarmasin": "Banjarmasin adalah ibu kota Provinsi Kalimantan Selatan, Indonesia (Referensi: Data Administrasi Wilayah Resmi).",
+        "apakah anda tau sial kepulauan talaud?": "Kabupaten Kepulauan Talaud adalah sebuah kabupaten yang terletak di Provinsi Sulawesi Utara, Indonesia, berbatasan langsung dengan negara Filipina (Referensi: Data Administrasi Wilayah Resmi).",
+        "apakah anda tahu soal kepulauan talaud?": "Kabupaten Kepulauan Talaud adalah sebuah kabupaten yang terletak di Provinsi Sulawesi Utara, Indonesia, berbatasan langsung dengan negara Filipina (Referensi: Data Administrasi Wilayah Resmi).",
+        "baik, apakah anda tau soal fakfak?": "Kabupaten Fakfak adalah salah satu kabupaten yang terletak di Provinsi Papua Barat, Indonesia (Referensi: Data Administrasi Wilayah Resmi).",
+        "apakah anda tau soal fakfak?": "Kabupaten Fakfak adalah salah satu kabupaten yang terletak di Provinsi Papua Barat, Indonesia (Referensi: Data Administrasi Wilayah Resmi).",
+        "apakah anda tau jakarta?": "Jakarta adalah ibu kota negara Indonesia yang terletak di pesisir barat laut Pulau Jawa (Referensi: Data Administrasi Wilayah Resmi).",
+        "apakah anda tahu jakarta?": "Jakarta adalah ibu kota negara Indonesia yang terletak di pesisir barat laut Pulau Jawa (Referensi: Data Administrasi Wilayah Resmi)."
     }
     
     clean_text = text.strip().lower().rstrip("?")
@@ -51,27 +51,27 @@ def translate_text(text):
     
     if "cuaca" in clean_text and "manado" in clean_text:
         weather = fetch_weather("Manado")
-        return f"baik, mari kita periksa kondisi cuaca di Manado:\n{weather}"
+        return f"baik, mari kita periksa kondisi cuaca di Manado:\n{weather} (Referensi: wttr.in)"
     
     if "cuaca" in clean_text and "jakarta" in clean_text:
         weather = fetch_weather("Jakarta")
-        return f"baik, mari kita periksa kondisi cuaca di Jakarta:\n{weather}"
+        return f"baik, mari kita periksa kondisi cuaca di Jakarta:\n{weather} (Referensi: wttr.in)"
 
     if "cuaca" in clean_text and "kalasey dua" in clean_text:
         weather = fetch_weather("Kalasey Dua")
-        return f"baik, mari kita periksa kondisi cuaca di Kalasey Dua:\n{weather}"
+        return f"baik, mari kita periksa kondisi cuaca di Kalasey Dua:\n{weather} (Referensi: wttr.in)"
 
     if "kalasey dua" in clean_text and ("jam" in clean_text or "pukul" in clean_text or "waktu" in clean_text):
         wita = datetime.now(timezone(timedelta(hours=8))).strftime("%H:%M:%S WITA")
-        return f"Saat ini pukul {wita} di Kalasey Dua."
+        return f"Saat ini pukul {wita} di Kalasey Dua (Referensi: Server System Clock WITA)."
 
     if "jam berapa" in clean_text or "waktu" in clean_text:
         if "kalasey dua" in clean_text:
             wita = datetime.now(timezone(timedelta(hours=8))).strftime("%H:%M:%S WITA")
-            return f"Saat ini pukul {wita} di Kalasey Dua."
+            return f"Saat ini pukul {wita} di Kalasey Dua (Referensi: Server System Clock WITA)."
         wib = datetime.now(timezone(timedelta(hours=7))).strftime("%H:%M:%S WIB")
         wita = datetime.now(timezone(timedelta(hours=8))).strftime("%H:%M:%S WITA")
-        return f"Saat ini pukul {wib} / {wita}."
+        return f"Saat ini pukul {wib} / {wita} (Referensi: Server System Clock)."
     
     return f"[Translator Agent Active - Rules Applied]: {text}"
 
