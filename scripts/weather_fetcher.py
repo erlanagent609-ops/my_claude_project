@@ -1,7 +1,7 @@
 import sys
 import urllib.request
 import json
-from scripts.location_registry import get_coordinates
+from location_registry import get_coordinates
 
 def fetch_weather(latitude=52.52, longitude=13.41):
     """
