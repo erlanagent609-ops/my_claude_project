@@ -29,9 +29,11 @@ def git_sync():
     print(f"Target repository configured: {repo_url}")
     
     os.chdir(parent_dir)
+    # Remove credentials file from git tracking if it was previously added
+    run_command(["git", "rm", "--cached", "config/git_credentials.json"])
     run_command(["git", "remote", "set-url", "origin", repo_url])
     run_command(["git", "add", "."])
-    run_command(["git", "commit", "-m", "chore: autonomous multi-agent sync with command runner"])
+    run_command(["git", "commit", "-m", "chore: autonomous multi-agent sync with secure gitignore"])
     success = run_command(["git", "push", "origin", "main"])
     
     if success:
