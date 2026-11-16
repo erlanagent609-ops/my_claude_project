@@ -1,0 +1,11 @@
+LOCATIONS = {
+    "jakarta": {"latitude": -6.2088, "longitude": 106.8456},
+    "manado": {"latitude": 1.4748, "longitude": 124.8421},
+    "berlin": {"latitude": 52.52, "longitude": 13.41},
+    "tokyo": {"latitude": 35.6762, "longitude": 139.6503},
+    "london": {"latitude": 51.5074, "longitude": -0.1278},
+}
+
+def get_coordinates(city_name):
+    key = city_name.strip().lower()
+    return LOCATIONS.get(key)

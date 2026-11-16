@@ -1,5 +1,7 @@
+import sys
 import urllib.request
 import json
+from scripts.location_registry import get_coordinates
 
 def fetch_weather(latitude=52.52, longitude=13.41):
     """
@@ -21,8 +23,22 @@ def fetch_weather(latitude=52.52, longitude=13.41):
         return None
 
 if __name__ == "__main__":
-    print("Fetching current weather...")
-    weather = fetch_weather()
+    lat = 52.52
+    lon = 13.41
+    location_label = "Berlin (Default)"
+
+    if len(sys.argv) > 1:
+        query = sys.argv[1]
+        coords = get_coordinates(query)
+        if coords:
+            lat = coords["latitude"]
+            lon = coords["longitude"]
+            location_label = query.capitalize()
+        else:
+            print(f"Location '{query}' not found in registry. Using default (Berlin).")
+
+    print(f"Fetching current weather for {location_label}...")
+    weather = fetch_weather(lat, lon)
     if weather:
         print("\nCurrent Weather Data:")
         print(f"Temperature: {weather.get('temperature')}°C")
