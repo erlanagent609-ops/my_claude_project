@@ -17,7 +17,8 @@ def translate_text(text):
         "fetching current weather for": "mengambil cuaca terkini untuk",
         "where is the translator agent? is it not working anymore?": "di mana agen translator? apakah sudah tidak bekerja?",
         "please update the repository automatically": "harap perbarui repositori secara otomatis",
-        "halo, apakah anda terhubung?": "halo, ya saya terhubung dan siap membantu!"
+        "halo, apakah anda terhubung?": "halo, ya saya terhubung dan siap membantu!",
+        "halo apakah anda terhubung?": "halo, ya saya terhubung dan siap membantu!"
     }
     
     clean_text = text.strip().lower()
