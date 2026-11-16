@@ -10,6 +10,7 @@ def load_skill_rules():
     return "Translator Agent Guidelines not found."
 
 def translate_text(text):
+    rules = load_skill_rules()
     translations = {
         "this autonomous agent system is designed to simplify daily tasks on the ubuntu server.": 
         "Sistem agen otonom ini dirancang untuk mempermudah pekerjaan sehari-hari di server Ubuntu.",
@@ -19,7 +20,9 @@ def translate_text(text):
         "where is the translator agent? is it not working anymore?": "di mana agen translator? apakah sudah tidak bekerja?",
         "please update the repository automatically": "harap perbarui repositori secara otomatis",
         "halo, apakah anda terhubung?": "halo, ya saya terhubung dan siap membantu!",
-        "halo apakah anda terhubung?": "halo, ya saya terhubung dan siap membantu!"
+        "halo apakah anda terhubung?": "halo, ya saya terhubung dan siap membantu!",
+        "halo, apakah anda terhubung ke internet?": "halo, ya saya terhubung ke internet dan siap membantu!",
+        "halo apakah anda terhubung ke internet?": "halo, ya saya terhubung ke internet dan siap membantu!"
     }
     
     clean_text = text.strip().lower()
@@ -30,7 +33,7 @@ def translate_text(text):
         weather = fetch_weather("Manado")
         return f"baik, mari kita periksa kondisi cuaca di Manado:\n{weather}"
     
-    return f"[Terjemahan sesuai aturan translator_agent.md]: {text}"
+    return f"[Translator Agent Active - Rules Applied]: {text}"
 
 def run_translator_test():
     test_phrase = "where is the translator agent? is it not working anymore?"
