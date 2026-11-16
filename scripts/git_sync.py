@@ -29,12 +29,13 @@ def git_sync():
     print(f"Target repository configured: {repo_url}")
     
     os.chdir(parent_dir)
-    # Remove credentials file from git tracking if it was previously added
+    # Reset local commits to remove the secret from commit history
+    run_command(["git", "reset", "--soft", "HEAD~1"])
     run_command(["git", "rm", "--cached", "config/git_credentials.json"])
     run_command(["git", "remote", "set-url", "origin", repo_url])
     run_command(["git", "add", "."])
-    run_command(["git", "commit", "-m", "chore: autonomous multi-agent sync with secure gitignore"])
-    success = run_command(["git", "push", "origin", "main"])
+    run_command(["git", "commit", "-m", "chore: secure autonomous multi-agent sync without secrets"])
+    success = run_command(["git", "push", "origin", "main", "--force"])
     
     if success:
         print("Workspace successfully pushed to GitHub!")
