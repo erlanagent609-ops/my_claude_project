@@ -26,7 +26,6 @@ def fetch_internet_time(timezone_str="Asia/Makassar"):
                     dt = datetime.fromisoformat(data["datetime"].replace('Z', '+00:00'))
                     return dt.strftime("%H:%M:%S"), f"worldtimeapi.org ({timezone_str})"
                 elif "time" in data and "date" in data:
-                    # timeapi.io format: date="10/24/2023", time="18:34"
                     return data["time"], f"timeapi.io ({timezone_str})"
         except Exception:
             continue
@@ -90,6 +89,13 @@ def translate_text(text):
             ref = "Server System Clock WITA (Internet fallback failed)"
         return f"Saat ini pukul {time_val} WITA di Kalasey Dua (Referensi: {ref})."
 
+    if "papua" in clean_text and ("jam" in clean_text or "pukul" in clean_text or "waktu" in clean_text):
+        time_val, ref = fetch_internet_time("Asia/Jayapura")
+        if not time_val:
+            time_val = datetime.now(timezone(timedelta(hours=9))).strftime("%H:%M:%S")
+            ref = "Server System Clock WIT (Internet fallback failed)"
+        return f"Saat ini pukul {time_val} WIT di Papua (Referensi: {ref})."
+
     if "jam berapa" in clean_text or "waktu" in clean_text:
         if "kalasey dua" in clean_text:
             time_val, ref = fetch_internet_time("Asia/Makassar")
@@ -97,16 +103,26 @@ def translate_text(text):
                 time_val = datetime.now(timezone(timedelta(hours=8))).strftime("%H:%M:%S")
                 ref = "Server System Clock WITA (Internet fallback failed)"
             return f"Saat ini pukul {time_val} WITA di Kalasey Dua (Referensi: {ref})."
+        if "papua" in clean_text:
+            time_val, ref = fetch_internet_time("Asia/Jayapura")
+            if not time_val:
+                time_val = datetime.now(timezone(timedelta(hours=9))).strftime("%H:%M:%S")
+                ref = "Server System Clock WIT (Internet fallback failed)"
+            return f"Saat ini pukul {time_val} WIT di Papua (Referensi: {ref})."
         
         wib_time, wib_ref = fetch_internet_time("Asia/Jakarta")
         wita_time, wita_ref = fetch_internet_time("Asia/Makassar")
+        wit_time, wit_ref = fetch_internet_time("Asia/Jayapura")
         if not wib_time:
             wib_time = datetime.now(timezone(timedelta(hours=7))).strftime("%H:%M:%S")
             wib_ref = "Server System Clock WIB"
         if not wita_time:
             wita_time = datetime.now(timezone(timedelta(hours=8))).strftime("%H:%M:%S")
             wita_ref = "Server System Clock WITA"
-        return f"Saat ini pukul {wib_time} WIB / {wita_time} WITA (Referensi: {wib_ref} / {wita_ref})."
+        if not wit_time:
+            wit_time = datetime.now(timezone(timedelta(hours=9))).strftime("%H:%M:%S")
+            wit_ref = "Server System Clock WIT"
+        return f"Saat ini pukul {wib_time} WIB / {wita_time} WITA / {wit_time} WIT (Referensi: {wib_ref} / {wita_ref} / {wit_ref})."
     
     return f"[Translator Agent Active - Rules Applied]: {text}"
 
