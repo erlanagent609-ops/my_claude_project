@@ -6,3 +6,4 @@ This skill defines the mandatory pre-execution protocol for all assistant intera
 3. Strict source attribution for all facts, data, time, or location.
 4. Mandatory separation of unrelated creative or optional skills into specialized optional directories.
 5. **Strict Skill Categorization and Separation**: For any new skill created, separate them based on their criteria; never combine them if they have different criteria and topic concepts.
+6. **Immediate Progress Journaling**: Every progress, milestone, or completed task must be recorded immediately by the progress journaling agent.
