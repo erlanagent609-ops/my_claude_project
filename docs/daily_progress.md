@@ -14,5 +14,6 @@
    - Log Analyzer Agent
    - Content Writer Agent
    - Chef Agent
+   - Token Tracker Agent
    - Persistent Fault-Tolerant Journaling Protocol
 5. **Continuous Improvement**: Ensured all user interactions are handled autonomously, cleanly, and directly without omitting details. All milestones, articles, and logs are persistently tracked to survive unexpected offline events.
