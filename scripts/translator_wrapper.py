@@ -30,7 +30,9 @@ def translate_text(text):
         "kalau toraja?": "Toraja (Kabupaten Tana Toraja dan Toraja Utara) terletak di Provinsi Sulawesi Selatan, Indonesia.",
         "kalau toraja": "Toraja (Kabupaten Tana Toraja dan Toraja Utara) terletak di Provinsi Sulawesi Selatan, Indonesia.",
         "kalau banjarmasin?": "Banjarmasin adalah ibu kota Provinsi Kalimantan Selatan, Indonesia.",
-        "kalau banjarmasin": "Banjarmasin adalah ibu kota Provinsi Kalimantan Selatan, Indonesia."
+        "kalau banjarmasin": "Banjarmasin adalah ibu kota Provinsi Kalimantan Selatan, Indonesia.",
+        "apakah anda tau sial kepulauan talaud?": "Kabupaten Kepulauan Talaud adalah sebuah kabupaten yang terletak di Provinsi Sulawesi Utara, Indonesia, berbatasan langsung dengan negara Filipina.",
+        "apakah anda tahu soal kepulauan talaud?": "Kabupaten Kepulauan Talaud adalah sebuah kabupaten yang terletak di Provinsi Sulawesi Utara, Indonesia, berbatasan langsung dengan negara Filipina."
     }
     
     clean_text = text.strip().lower().rstrip("?")
