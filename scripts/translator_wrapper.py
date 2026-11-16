@@ -14,7 +14,9 @@ def translate_text(text):
         "Sistem agen otonom ini dirancang untuk mempermudah pekerjaan sehari-hari di server Ubuntu.",
         "hello world! this is a sample text for analyzing words and sentences.":
         "halo dunia! ini adalah teks sampel untuk menganalisis kata dan kalimat.",
-        "fetching current weather for": "mengambil cuaca terkini untuk"
+        "fetching current weather for": "mengambil cuaca terkini untuk",
+        "where is the translator agent? is it not working anymore?": "di mana agen translator? apakah sudah tidak bekerja?",
+        "please update the repository automatically": "harap perbarui repositori secara otomatis"
     }
     
     clean_text = text.strip().lower()
