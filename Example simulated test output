@@ -1,0 +1,11 @@
+$ python scripts/text_analyzer.py sample.txt
+--- Text Analysis Results for sample.txt ---
+Total Words: 10
+Total Sentences: 3
+
+Top 5 Most Frequent Words:
+  hello: 2
+  world: 2
+  this: 1
+  is: 1
+  a: 1
