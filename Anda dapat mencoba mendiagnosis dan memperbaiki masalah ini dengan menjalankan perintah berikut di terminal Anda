@@ -1,3 +1,0 @@
-git fsck --full
-git prune
-git gc --prune=now
