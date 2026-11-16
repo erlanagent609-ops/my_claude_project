@@ -24,8 +24,15 @@ def translate_text(text):
         "halo, apakah anda terhubung ke internet?": "halo, ya saya terhubung ke internet dan siap membantu!",
         "halo apakah anda terhubung ke internet?": "halo, ya saya terhubung ke internet dan siap membantu!",
         "apakah anda tau manado di koordinat mana?": "Manado terletak di koordinat sekitar 1.4748° LU, 124.8421° BT.",
-        "apakah anda tahu manado di koordinat mana?": "Manado terletak di koordinat sekitar 1.4748° LU, 124.8421° BT."
+        "apakah anda tahu manado di koordinat mana?": "Manado terletak di koordinat sekitar 1.4748° LU, 124.8421° BT.",
+        "apakah anda tau manado provinsi dan dari negara mana?": "Manado adalah ibu kota Provinsi Sulawesi Utara, Indonesia.",
+        "apakah anda tau manado provinsi dan dari negara mana": "Manado adalah ibu kota Provinsi Sulawesi Utara, Indonesia."
     }
+    
+    clean_text = text.strip().lower().rstrip("?")
+    for key in translations:
+        if key.rstrip("?") == clean_text:
+            return translations[key]
     
     clean_text = text.strip().lower()
     if clean_text in translations:
