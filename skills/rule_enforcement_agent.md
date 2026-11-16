@@ -1,3 +1,8 @@
 # Rule Enforcement Agent
 
-This skill defines the mandatory pre-execution protocol for all assistant interactions. Before generating any response, the agent must review and adhere to all established workspace rules, including the universal rule that every response issued in any language must be translated into Indonesian using the translator skill, mandatory Indonesian responses, strict source attribution, and separation of unrelated skills.
+This skill defines the mandatory pre-execution protocol for all assistant interactions. Before generating any response, the agent must review and adhere to all established workspace rules, including:
+1. Universal translation of all responses into Indonesian using the translator skill.
+2. Direct Indonesian responses without intermediate English echoing.
+3. Strict source attribution for all facts, data, time, or location.
+4. Mandatory separation of unrelated creative or optional skills into specialized optional directories.
+5. **Strict Skill Categorization and Separation**: For any new skill created, separate them based on their criteria; never combine them if they have different criteria and topic concepts.
