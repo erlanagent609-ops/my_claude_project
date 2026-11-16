@@ -25,12 +25,27 @@ def translate_text(text):
     
     return f"[Terjemahan sesuai aturan translator_agent.md]: {text}"
 
+def run_translator_test():
+    test_phrase = "where is the translator agent? is it not working anymore?"
+    result = translate_text(test_phrase)
+    print(f"Test Input: {test_phrase}")
+    print(f"Test Output: {result}")
+    return result is not None
+
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        input_text = " ".join(sys.argv[1:])
-        rules = load_skill_rules()
-        print("Loaded Translator Agent Guidelines successfully.")
-        result = translate_text(input_text)
-        print(result)
+        if sys.argv[1] == "--test":
+            print("Running Translator Agent Test...")
+            success = run_translator_test()
+            if success:
+                print("Translator Agent Test Passed Successfully.")
+            else:
+                print("Translator Agent Test Failed.")
+        else:
+            input_text = " ".join(sys.argv[1:])
+            rules = load_skill_rules()
+            print("Loaded Translator Agent Guidelines successfully.")
+            result = translate_text(input_text)
+            print(result)
     else:
-        print("Usage: python3 scripts/translator_wrapper.py <English text to translate>")
+        print("Usage: python3 scripts/translator_wrapper.py [--test | <English text to translate>]")
