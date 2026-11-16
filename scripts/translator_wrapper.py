@@ -32,7 +32,9 @@ def translate_text(text):
         "kalau banjarmasin?": "Banjarmasin adalah ibu kota Provinsi Kalimantan Selatan, Indonesia.",
         "kalau banjarmasin": "Banjarmasin adalah ibu kota Provinsi Kalimantan Selatan, Indonesia.",
         "apakah anda tau sial kepulauan talaud?": "Kabupaten Kepulauan Talaud adalah sebuah kabupaten yang terletak di Provinsi Sulawesi Utara, Indonesia, berbatasan langsung dengan negara Filipina.",
-        "apakah anda tahu soal kepulauan talaud?": "Kabupaten Kepulauan Talaud adalah sebuah kabupaten yang terletak di Provinsi Sulawesi Utara, Indonesia, berbatasan langsung dengan negara Filipina."
+        "apakah anda tahu soal kepulauan talaud?": "Kabupaten Kepulauan Talaud adalah sebuah kabupaten yang terletak di Provinsi Sulawesi Utara, Indonesia, berbatasan langsung dengan negara Filipina.",
+        "baik, apakah anda tau soal fakfak?": "Kabupaten Fakfak adalah salah satu kabupaten yang terletak di Provinsi Papua Barat, Indonesia.",
+        "apakah anda tau soal fakfak?": "Kabupaten Fakfak adalah salah satu kabupaten yang terletak di Provinsi Papua Barat, Indonesia."
     }
     
     clean_text = text.strip().lower().rstrip("?")
