@@ -13,3 +13,4 @@ To add a new skill for the agent:
 - **Weather Fetcher**: `scripts/weather_fetcher.py` and `docs/weather_guide.md`
 - **CSV Data Parser**: `skills/data_parser.md`
 - **Text Analyzer**: `skills/text_analyzer.md` and `scripts/text_analyzer.py` (Counts words, sentences, and word frequencies)
+- **Translator Wrapper**: `scripts/translator_wrapper.py` and `skills/translator_agent.md` (Translates English text to Indonesian following agent guidelines)
