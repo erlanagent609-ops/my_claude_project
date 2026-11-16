@@ -28,7 +28,9 @@ def translate_text(text):
         "apakah anda tau manado provinsi dan dari negara mana?": "Manado adalah ibu kota Provinsi Sulawesi Utara, Indonesia.",
         "apakah anda tau manado provinsi dan dari negara mana": "Manado adalah ibu kota Provinsi Sulawesi Utara, Indonesia.",
         "kalau toraja?": "Toraja (Kabupaten Tana Toraja dan Toraja Utara) terletak di Provinsi Sulawesi Selatan, Indonesia.",
-        "kalau toraja": "Toraja (Kabupaten Tana Toraja dan Toraja Utara) terletak di Provinsi Sulawesi Selatan, Indonesia."
+        "kalau toraja": "Toraja (Kabupaten Tana Toraja dan Toraja Utara) terletak di Provinsi Sulawesi Selatan, Indonesia.",
+        "kalau banjarmasin?": "Banjarmasin adalah ibu kota Provinsi Kalimantan Selatan, Indonesia.",
+        "kalau banjarmasin": "Banjarmasin adalah ibu kota Provinsi Kalimantan Selatan, Indonesia."
     }
     
     clean_text = text.strip().lower().rstrip("?")
