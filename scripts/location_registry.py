@@ -3,6 +3,8 @@ LOCATIONS = {
     "manado": {"latitude": 1.4748, "longitude": 124.8421},
     "kalasey dua": {"latitude": 1.4500, "longitude": 124.8000},
     "kalasey": {"latitude": 1.4500, "longitude": 124.8000},
+    "kepulauan talaud": {"latitude": 3.9515, "longitude": 126.8286},
+    "talaud": {"latitude": 3.9515, "longitude": 126.8286},
     "berlin": {"latitude": 52.52, "longitude": 13.41},
     "tokyo": {"latitude": 35.6762, "longitude": 139.6503},
     "london": {"latitude": 51.5074, "longitude": -0.1278},
