@@ -1,6 +1,6 @@
-import subprocess
 import json
 import os
+from scripts.command_runner import run_command
 
 def git_sync():
     config_path = "config/git_credentials.json"
@@ -17,22 +17,18 @@ def git_sync():
     else:
         repo_url = "https://github.com/erlanagent609-ops/my_claude_project.git"
 
-    print(f"Target repository configured.")
-    try:
-        print("Setting remote URL...")
-        subprocess.run(["git", "remote", "set-url", "origin", repo_url], check=True)
-
-        print("Running git add .")
-        subprocess.run(["git", "add", "."], check=True)
-        
-        print("Running git commit")
-        subprocess.run(["git", "commit", "-m", "chore: autonomous multi-agent sync with credentials"], check=False)
-        
-        print("Running git push origin main")
-        result = subprocess.run(["git", "push", "origin", "main"], capture_output=True, text=True, check=True)
-        print("Git push successful:", result.stdout)
-    except subprocess.CalledProcessError as e:
-        print(f"Git sync encountered an error: {e.stderr}")
+    print(f"Target repository configured: {repo_url}")
+    
+    # Execute git sync steps using command runner
+    run_command(["git", "remote", "set-url", "origin", repo_url])
+    run_command(["git", "add", "."])
+    run_command(["git", "commit", "-m", "chore: autonomous multi-agent sync with command runner"])
+    success = run_command(["git", "push", "origin", "main"])
+    
+    if success:
+        print("Workspace successfully pushed to GitHub!")
+    else:
+        print("Git push encountered an issue. Please verify credentials and network connection.")
 
 if __name__ == "__main__":
     git_sync()
