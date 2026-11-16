@@ -1,5 +1,7 @@
 import sys
 import os
+import urllib.request
+import json
 from datetime import datetime, timezone, timedelta
 from weather_fetcher import fetch_weather
 
@@ -9,6 +11,20 @@ def load_skill_rules():
         with open(skill_path, 'r', encoding='utf-8') as f:
             return f.read()
     return "Translator Agent Guidelines not found."
+
+def fetch_internet_time(timezone_str="Asia/Makassar"):
+    url = f"http://worldtimeapi.org/api/timezone/{timezone_str}"
+    try:
+        req = urllib.request.Request(url, headers={'User-Agent': 'curl'})
+        with urllib.request.urlopen(req, timeout=3) as response:
+            data = json.loads(response.read().decode('utf-8'))
+            datetime_str = data.get("datetime")
+            if datetime_str:
+                dt = datetime.fromisoformat(datetime_str)
+                return dt.strftime("%H:%M:%S"), "worldtimeapi.org"
+    except Exception:
+        pass
+    return None, None
 
 def translate_text(text):
     rules = load_skill_rules()
@@ -62,16 +78,29 @@ def translate_text(text):
         return f"baik, mari kita periksa kondisi cuaca di Kalasey Dua:\n{weather} (Referensi: wttr.in)"
 
     if "kalasey dua" in clean_text and ("jam" in clean_text or "pukul" in clean_text or "waktu" in clean_text):
-        wita = datetime.now(timezone(timedelta(hours=8))).strftime("%H:%M:%S WITA")
-        return f"Saat ini pukul {wita} di Kalasey Dua (Referensi: Server System Clock WITA UTC+8). Catatan: Waktu server mungkin berbeda dari waktu lokal perangkat pengguna."
+        time_val, ref = fetch_internet_time("Asia/Makassar")
+        if not time_val:
+            time_val = datetime.now(timezone(timedelta(hours=8))).strftime("%H:%M:%S")
+            ref = "Server System Clock WITA"
+        return f"Saat ini pukul {time_val} WITA di Kalasey Dua (Referensi: {ref})."
 
     if "jam berapa" in clean_text or "waktu" in clean_text:
         if "kalasey dua" in clean_text:
-            wita = datetime.now(timezone(timedelta(hours=8))).strftime("%H:%M:%S WITA")
-            return f"Saat ini pukul {wita} di Kalasey Dua (Referensi: Server System Clock WITA UTC+8)."
-        wib = datetime.now(timezone(timedelta(hours=7))).strftime("%H:%M:%S WIB")
-        wita = datetime.now(timezone(timedelta(hours=8))).strftime("%H:%M:%S WITA")
-        return f"Saat ini pukul {wib} / {wita} (Referensi: Server System Clock WIB/WITA UTC+7/UTC+8)."
+            time_val, ref = fetch_internet_time("Asia/Makassar")
+            if not time_val:
+                time_val = datetime.now(timezone(timedelta(hours=8))).strftime("%H:%M:%S")
+                ref = "Server System Clock WITA"
+            return f"Saat ini pukul {time_val} WITA di Kalasey Dua (Referensi: {ref})."
+        
+        wib_time, wib_ref = fetch_internet_time("Asia/Jakarta")
+        wita_time, wita_ref = fetch_internet_time("Asia/Makassar")
+        if not wib_time:
+            wib_time = datetime.now(timezone(timedelta(hours=7))).strftime("%H:%M:%S")
+            wib_ref = "Server System Clock WIB"
+        if not wita_time:
+            wita_time = datetime.now(timezone(timedelta(hours=8))).strftime("%H:%M:%S")
+            wita_ref = "Server System Clock WITA"
+        return f"Saat ini pukul {wib_time} WIB / {wita_time} WITA (Referensi: {wib_ref} / {wita_ref})."
     
     return f"[Translator Agent Active - Rules Applied]: {text}"
 
