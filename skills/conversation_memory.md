@@ -1,6 +1,6 @@
-# Conversation Memory Skill
+# Conversation Memory Skill (Upgraded)
 
-This skill defines the protocol for recording and persisting conversation history, learned translations, and user preferences across chat sessions.
+This skill defines the enhanced protocol for recording, indexing, and persisting conversation history, learned translations, and user preferences across chat sessions with improved retrieval accuracy.
 
 ## Core Responsibilities
 1. **Memory Logging**: Automatically log new translations, rules, and user interaction patterns to persistent storage or memory files.
