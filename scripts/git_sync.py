@@ -1,9 +1,18 @@
 import json
 import os
-from scripts.command_runner import run_command
+import sys
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+if current_dir not in sys.path:
+    sys.path.append(current_dir)
+parent_dir = os.path.dirname(current_dir)
+if parent_dir not in sys.path:
+    sys.path.append(parent_dir)
+
+from command_runner import run_command
 
 def git_sync():
-    config_path = "config/git_credentials.json"
+    config_path = os.path.join(parent_dir, "config/git_credentials.json")
     if os.path.exists(config_path):
         with open(config_path, "r", encoding="utf-8") as f:
             config = json.load(f)
@@ -19,6 +28,7 @@ def git_sync():
 
     print(f"Target repository configured: {repo_url}")
     
+    os.chdir(parent_dir)
     run_command(["git", "remote", "set-url", "origin", repo_url])
     run_command(["git", "add", "."])
     run_command(["git", "commit", "-m", "chore: autonomous multi-agent sync with command runner"])
