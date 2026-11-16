@@ -61,6 +61,10 @@ def translate_text(text):
         weather = fetch_weather("Kalasey Dua")
         return f"baik, mari kita periksa kondisi cuaca di Kalasey Dua:\n{weather}"
 
+    if "kalasey dua" in clean_text and ("jam" in clean_text or "pukul" in clean_text or "waktu" in clean_text):
+        wita = datetime.now(timezone(timedelta(hours=8))).strftime("%H:%M:%S WITA")
+        return f"Saat ini pukul {wita} di Kalasey Dua."
+
     if "jam berapa" in clean_text or "waktu" in clean_text:
         if "kalasey dua" in clean_text:
             wita = datetime.now(timezone(timedelta(hours=8))).strftime("%H:%M:%S WITA")
