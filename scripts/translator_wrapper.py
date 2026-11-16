@@ -15,17 +15,19 @@ def load_skill_rules():
 def fetch_internet_time(timezone_str="Asia/Makassar"):
     urls = [
         f"http://worldtimeapi.org/api/timezone/{timezone_str}",
-        f"https://showcase.api.live.net/time" # fallback or alternative if needed
+        "https://www.timeapi.io/api/Time/current/zone?timeZone=Asia/Makassar"
     ]
-    for url in [f"http://worldtimeapi.org/api/timezone/{timezone_str}"]:
+    for url in urls:
         try:
-            req = urllib.request.Request(url, headers={'User-Agent': 'curl'})
+            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
             with urllib.request.urlopen(req, timeout=3) as response:
                 data = json.loads(response.read().decode('utf-8'))
-                datetime_str = data.get("datetime")
-                if datetime_str:
-                    dt = datetime.fromisoformat(datetime_str)
-                    return dt.strftime("%H:%M:%S"), "worldtimeapi.org (Internet NTP Time)"
+                if "datetime" in data:
+                    dt = datetime.fromisoformat(data["datetime"].replace('Z', '+00:00'))
+                    return dt.strftime("%H:%M:%S"), f"worldtimeapi.org ({timezone_str})"
+                elif "time" in data and "date" in data:
+                    # timeapi.io format: date="10/24/2023", time="18:34"
+                    return data["time"], f"timeapi.io ({timezone_str})"
         except Exception:
             continue
     return None, None
