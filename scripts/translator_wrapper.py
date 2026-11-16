@@ -63,15 +63,15 @@ def translate_text(text):
 
     if "kalasey dua" in clean_text and ("jam" in clean_text or "pukul" in clean_text or "waktu" in clean_text):
         wita = datetime.now(timezone(timedelta(hours=8))).strftime("%H:%M:%S WITA")
-        return f"Saat ini pukul {wita} di Kalasey Dua (Referensi: Server System Clock WITA)."
+        return f"Saat ini pukul {wita} di Kalasey Dua (Referensi: Server System Clock WITA UTC+8). Catatan: Waktu server mungkin berbeda dari waktu lokal perangkat pengguna."
 
     if "jam berapa" in clean_text or "waktu" in clean_text:
         if "kalasey dua" in clean_text:
             wita = datetime.now(timezone(timedelta(hours=8))).strftime("%H:%M:%S WITA")
-            return f"Saat ini pukul {wita} di Kalasey Dua (Referensi: Server System Clock WITA)."
+            return f"Saat ini pukul {wita} di Kalasey Dua (Referensi: Server System Clock WITA UTC+8)."
         wib = datetime.now(timezone(timedelta(hours=7))).strftime("%H:%M:%S WIB")
         wita = datetime.now(timezone(timedelta(hours=8))).strftime("%H:%M:%S WITA")
-        return f"Saat ini pukul {wib} / {wita} (Referensi: Server System Clock)."
+        return f"Saat ini pukul {wib} / {wita} (Referensi: Server System Clock WIB/WITA UTC+7/UTC+8)."
     
     return f"[Translator Agent Active - Rules Applied]: {text}"
 
