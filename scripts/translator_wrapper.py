@@ -34,7 +34,9 @@ def translate_text(text):
         "apakah anda tau sial kepulauan talaud?": "Kabupaten Kepulauan Talaud adalah sebuah kabupaten yang terletak di Provinsi Sulawesi Utara, Indonesia, berbatasan langsung dengan negara Filipina.",
         "apakah anda tahu soal kepulauan talaud?": "Kabupaten Kepulauan Talaud adalah sebuah kabupaten yang terletak di Provinsi Sulawesi Utara, Indonesia, berbatasan langsung dengan negara Filipina.",
         "baik, apakah anda tau soal fakfak?": "Kabupaten Fakfak adalah salah satu kabupaten yang terletak di Provinsi Papua Barat, Indonesia.",
-        "apakah anda tau soal fakfak?": "Kabupaten Fakfak adalah salah satu kabupaten yang terletak di Provinsi Papua Barat, Indonesia."
+        "apakah anda tau soal fakfak?": "Kabupaten Fakfak adalah salah satu kabupaten yang terletak di Provinsi Papua Barat, Indonesia.",
+        "apakah anda tau jakarta?": "Jakarta adalah ibu kota negara Indonesia yang terletak di pesisir barat laut Pulau Jawa.",
+        "apakah anda tahu jakarta?": "Jakarta adalah ibu kota negara Indonesia yang terletak di pesisir barat laut Pulau Jawa."
     }
     
     clean_text = text.strip().lower().rstrip("?")
