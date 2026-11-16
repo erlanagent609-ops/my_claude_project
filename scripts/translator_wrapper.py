@@ -55,6 +55,10 @@ def translate_text(text):
     if "cuaca" in clean_text and "jakarta" in clean_text:
         weather = fetch_weather("Jakarta")
         return f"baik, mari kita periksa kondisi cuaca di Jakarta:\n{weather}"
+
+    if "cuaca" in clean_text and "kalasey dua" in clean_text:
+        weather = fetch_weather("Kalasey Dua")
+        return f"baik, mari kita periksa kondisi cuaca di Kalasey Dua:\n{weather}"
     
     return f"[Translator Agent Active - Rules Applied]: {text}"
 
