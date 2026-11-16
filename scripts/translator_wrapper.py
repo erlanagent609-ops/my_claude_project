@@ -1,5 +1,6 @@
 import sys
 import os
+from weather_fetcher import fetch_weather
 
 def load_skill_rules():
     skill_path = os.path.join(os.path.dirname(__file__), '../skills/translator_agent.md')
@@ -18,14 +19,16 @@ def translate_text(text):
         "where is the translator agent? is it not working anymore?": "di mana agen translator? apakah sudah tidak bekerja?",
         "please update the repository automatically": "harap perbarui repositori secara otomatis",
         "halo, apakah anda terhubung?": "halo, ya saya terhubung dan siap membantu!",
-        "halo apakah anda terhubung?": "halo, ya saya terhubung dan siap membantu!",
-        "baik sekarang apakah anda bisa memberitahu saya kondisi cuaca di manado?": "baik, mari kita periksa kondisi cuaca di Manado.",
-        "baik sekarang apakai anda bisa memberitahu saya kondisi cuaca di manado?": "baik, mari kita periksa kondisi cuaca di Manado."
+        "halo apakah anda terhubung?": "halo, ya saya terhubung dan siap membantu!"
     }
     
     clean_text = text.strip().lower()
     if clean_text in translations:
         return translations[clean_text]
+    
+    if "cuaca" in clean_text and "manado" in clean_text:
+        weather = fetch_weather("Manado")
+        return f"baik, mari kita periksa kondisi cuaca di Manado:\n{weather}"
     
     return f"[Terjemahan sesuai aturan translator_agent.md]: {text}"
 
