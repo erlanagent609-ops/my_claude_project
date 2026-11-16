@@ -89,6 +89,13 @@ def translate_text(text):
             ref = "Server System Clock WITA (Internet fallback failed)"
         return f"Saat ini pukul {time_val} WITA di Kalasey Dua (Referensi: {ref})."
 
+    if "makassar" in clean_text and ("jam" in clean_text or "pukul" in clean_text or "waktu" in clean_text):
+        time_val, ref = fetch_internet_time("Asia/Makassar")
+        if not time_val:
+            time_val = datetime.now(timezone(timedelta(hours=8))).strftime("%H:%M:%S")
+            ref = "Server System Clock WITA (Internet fallback failed)"
+        return f"Saat ini pukul {time_val} WITA di Makassar (Referensi: {ref})."
+
     if "papua" in clean_text and ("jam" in clean_text or "pukul" in clean_text or "waktu" in clean_text):
         time_val, ref = fetch_internet_time("Asia/Jayapura")
         if not time_val:
@@ -103,6 +110,12 @@ def translate_text(text):
                 time_val = datetime.now(timezone(timedelta(hours=8))).strftime("%H:%M:%S")
                 ref = "Server System Clock WITA (Internet fallback failed)"
             return f"Saat ini pukul {time_val} WITA di Kalasey Dua (Referensi: {ref})."
+        if "makassar" in clean_text:
+            time_val, ref = fetch_internet_time("Asia/Makassar")
+            if not time_val:
+                time_val = datetime.now(timezone(timedelta(hours=8))).strftime("%H:%M:%S")
+                ref = "Server System Clock WITA (Internet fallback failed)"
+            return f"Saat ini pukul {time_val} WITA di Makassar (Referensi: {ref})."
         if "papua" in clean_text:
             time_val, ref = fetch_internet_time("Asia/Jayapura")
             if not time_val:
