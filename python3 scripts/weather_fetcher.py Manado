@@ -1,0 +1,4 @@
+
+## Customization
+
+You can add more cities to `scripts/location_registry.py` or modify `scripts/weather_fetcher.py` to support different default locations.

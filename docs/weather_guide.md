@@ -9,5 +9,5 @@ The script uses Python's built-in standard libraries (`urllib.request` and `json
 ## How to Run
 
 1. Open your terminal in the project root directory.
-2. Execute the script using Python:
+2. Execute the script using Python with an optional city name:
 
