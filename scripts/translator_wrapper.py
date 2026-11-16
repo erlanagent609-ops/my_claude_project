@@ -26,7 +26,9 @@ def translate_text(text):
         "apakah anda tau manado di koordinat mana?": "Manado terletak di koordinat sekitar 1.4748° LU, 124.8421° BT.",
         "apakah anda tahu manado di koordinat mana?": "Manado terletak di koordinat sekitar 1.4748° LU, 124.8421° BT.",
         "apakah anda tau manado provinsi dan dari negara mana?": "Manado adalah ibu kota Provinsi Sulawesi Utara, Indonesia.",
-        "apakah anda tau manado provinsi dan dari negara mana": "Manado adalah ibu kota Provinsi Sulawesi Utara, Indonesia."
+        "apakah anda tau manado provinsi dan dari negara mana": "Manado adalah ibu kota Provinsi Sulawesi Utara, Indonesia.",
+        "kalau toraja?": "Toraja (Kabupaten Tana Toraja dan Toraja Utara) terletak di Provinsi Sulawesi Selatan, Indonesia.",
+        "kalau toraja": "Toraja (Kabupaten Tana Toraja dan Toraja Utara) terletak di Provinsi Sulawesi Selatan, Indonesia."
     }
     
     clean_text = text.strip().lower().rstrip("?")
