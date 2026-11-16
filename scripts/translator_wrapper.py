@@ -22,7 +22,9 @@ def translate_text(text):
         "halo, apakah anda terhubung?": "halo, ya saya terhubung dan siap membantu!",
         "halo apakah anda terhubung?": "halo, ya saya terhubung dan siap membantu!",
         "halo, apakah anda terhubung ke internet?": "halo, ya saya terhubung ke internet dan siap membantu!",
-        "halo apakah anda terhubung ke internet?": "halo, ya saya terhubung ke internet dan siap membantu!"
+        "halo apakah anda terhubung ke internet?": "halo, ya saya terhubung ke internet dan siap membantu!",
+        "apakah anda tau manado di koordinat mana?": "Manado terletak di koordinat sekitar 1.4748° LU, 124.8421° BT.",
+        "apakah anda tahu manado di koordinat mana?": "Manado terletak di koordinat sekitar 1.4748° LU, 124.8421° BT."
     }
     
     clean_text = text.strip().lower()
