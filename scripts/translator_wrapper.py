@@ -13,17 +13,21 @@ def load_skill_rules():
     return "Translator Agent Guidelines not found."
 
 def fetch_internet_time(timezone_str="Asia/Makassar"):
-    url = f"http://worldtimeapi.org/api/timezone/{timezone_str}"
-    try:
-        req = urllib.request.Request(url, headers={'User-Agent': 'curl'})
-        with urllib.request.urlopen(req, timeout=3) as response:
-            data = json.loads(response.read().decode('utf-8'))
-            datetime_str = data.get("datetime")
-            if datetime_str:
-                dt = datetime.fromisoformat(datetime_str)
-                return dt.strftime("%H:%M:%S"), "worldtimeapi.org"
-    except Exception:
-        pass
+    urls = [
+        f"http://worldtimeapi.org/api/timezone/{timezone_str}",
+        f"https://showcase.api.live.net/time" # fallback or alternative if needed
+    ]
+    for url in [f"http://worldtimeapi.org/api/timezone/{timezone_str}"]:
+        try:
+            req = urllib.request.Request(url, headers={'User-Agent': 'curl'})
+            with urllib.request.urlopen(req, timeout=3) as response:
+                data = json.loads(response.read().decode('utf-8'))
+                datetime_str = data.get("datetime")
+                if datetime_str:
+                    dt = datetime.fromisoformat(datetime_str)
+                    return dt.strftime("%H:%M:%S"), "worldtimeapi.org (Internet NTP Time)"
+        except Exception:
+            continue
     return None, None
 
 def translate_text(text):
@@ -81,7 +85,7 @@ def translate_text(text):
         time_val, ref = fetch_internet_time("Asia/Makassar")
         if not time_val:
             time_val = datetime.now(timezone(timedelta(hours=8))).strftime("%H:%M:%S")
-            ref = "Server System Clock WITA"
+            ref = "Server System Clock WITA (Internet fallback failed)"
         return f"Saat ini pukul {time_val} WITA di Kalasey Dua (Referensi: {ref})."
 
     if "jam berapa" in clean_text or "waktu" in clean_text:
@@ -89,7 +93,7 @@ def translate_text(text):
             time_val, ref = fetch_internet_time("Asia/Makassar")
             if not time_val:
                 time_val = datetime.now(timezone(timedelta(hours=8))).strftime("%H:%M:%S")
-                ref = "Server System Clock WITA"
+                ref = "Server System Clock WITA (Internet fallback failed)"
             return f"Saat ini pukul {time_val} WITA di Kalasey Dua (Referensi: {ref})."
         
         wib_time, wib_ref = fetch_internet_time("Asia/Jakarta")
