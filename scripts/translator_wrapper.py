@@ -18,7 +18,9 @@ def translate_text(text):
         "where is the translator agent? is it not working anymore?": "di mana agen translator? apakah sudah tidak bekerja?",
         "please update the repository automatically": "harap perbarui repositori secara otomatis",
         "halo, apakah anda terhubung?": "halo, ya saya terhubung dan siap membantu!",
-        "halo apakah anda terhubung?": "halo, ya saya terhubung dan siap membantu!"
+        "halo apakah anda terhubung?": "halo, ya saya terhubung dan siap membantu!",
+        "baik sekarang apakah anda bisa memberitahu saya kondisi cuaca di manado?": "baik, mari kita periksa kondisi cuaca di Manado.",
+        "baik sekarang apakai anda bisa memberitahu saya kondisi cuaca di manado?": "baik, mari kita periksa kondisi cuaca di Manado."
     }
     
     clean_text = text.strip().lower()
